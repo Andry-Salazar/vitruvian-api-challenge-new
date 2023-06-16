@@ -33,6 +33,10 @@ if (isset($uri[2])) {
 }
 
 $requestMethod = $_SERVER["REQUEST_METHOD"];
+if ($requestMethod == "OPTIONS") {
+  header("HTTP/1.1 200 OK");
+  exit();
+}
 
 // pass the request method and post ID to the Post and process the HTTP request:
 $controller = new Task($dbConnection, $requestMethod, $taskId);
